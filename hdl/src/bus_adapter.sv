@@ -31,10 +31,17 @@ module bus_adapter (
     regiser_block_io.out reg_block_io
 );
 
+`ifdef sample_bus
+
     assign reg_block_io.wr = bus.wr;
     assign reg_block_io.rd = bus.rd;
     assign reg_block_io.addr = bus.addr [reg_block_io.addr_w-1:0];
     assign reg_block_io.data_i = bus.data_i;
     assign reg_block_io.data_o = bus.data_o;
+
+`else
+// valid way for fail goes here
+    assert (false) else $error ("not implemented");
+`endif
 
 endmodule

@@ -25,9 +25,7 @@
 
     endinterface
 
-
-`endif
-
-`ifdef avalon
-    assert false else $error ("not implemented");
+`else
+// valid way for fail goes here
+    assert (false) else $error ("not implemented");
 `endif
