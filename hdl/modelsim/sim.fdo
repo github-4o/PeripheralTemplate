@@ -1,0 +1,23 @@
+onerror {puts "sim: error trap. exiting"; quit -code 1}
+onbreak {puts "sim: break trap. exiting"; quit -code 1}
+
+vlib work
+vmap work work
+
+puts "compiling sources"
+source compile.tcl
+
+puts "starting vsim"
+# top is always a "testbench". hardceded dependency
+# vsim -voptargs="+acc=rpn" -t 1ns -lib work work.testbench
+
+# run 1 ns
+
+# puts "setting signal traps"
+# when {sTest_done = 1} {puts "sim done :)"; quit -code 0}
+# when {sTest_error = 1} {puts "sim failed (:"; quit -code 1}
+
+# # assorted magic
+# run -all
+# puts "terminating simulation. this should never happen naturaly"
+quit -code 1
